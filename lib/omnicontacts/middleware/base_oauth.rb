@@ -104,6 +104,18 @@ module OmniContacts
         "omnicontacts." + class_name
       end
 
+      def get_state_query
+        state = ''
+        results = @env['QUERY_STRING'].split('&')
+        results.each {|r|
+          s = r.split('=')
+          if (s[0] == 'state')
+            state = s[1]
+          end
+        }
+        return state
+      end
+
     end
   end
 end

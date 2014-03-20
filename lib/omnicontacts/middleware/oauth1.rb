@@ -23,7 +23,9 @@ module OmniContacts
       end
 
       def callback
-        host_url_from_rack_env(@env) + callback_path
+        state = get_state_query
+        target_url = host_url_from_rack_env(@env) + callback_path
+        return target_url + (target_url.include?("?")?"&":"?") + 'state=' + state
       end
 
       alias :redirect_path :callback_path
